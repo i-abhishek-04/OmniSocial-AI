@@ -5,16 +5,16 @@ pydantic-settings==2.7.1
 python-dotenv==1.0.1
 email-validator==2.2.0
 
-# Auth
-python-jose[cryptography]==3.3.0
+# Auth - Prebuilt wheels for Linux Cloud environments (Render)
+pyjwt==2.10.1
+python-jose==3.3.0
 passlib[bcrypt]==1.7.4
 bcrypt==4.0.1
 
-# Database - SQLite works out of the box via sqlalchemy; add psycopg2-binary
-# if you point DATABASE_URL at a real Postgres instance.
+# Database
 sqlalchemy==2.0.36
 psycopg2-binary==2.9.10
 
-# Outbound HTTP (used by services/ai_service.py to call the OpenAI API)
+# Outbound HTTP & Web Server
 httpx==0.28.1
 gunicorn==23.0.0
