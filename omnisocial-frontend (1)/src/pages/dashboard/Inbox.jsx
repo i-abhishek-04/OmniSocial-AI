@@ -36,8 +36,10 @@ const Inbox = () => {
     try {
       const data = await getInboxMessages(selectedPlatform, unreadOnly);
       setMessages(data);
-      if (data.length > 0 && !selectedMessage) {
+      if (data.length > 0) {
         setSelectedMessage(data[0]);
+      } else {
+        setSelectedMessage(null);
       }
     } catch (err) {
       console.error(err);
