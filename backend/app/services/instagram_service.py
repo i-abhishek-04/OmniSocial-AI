@@ -15,10 +15,12 @@ async def fetch_user_stats(handle: str) -> dict | None:
     # Safe live lookup attempt
     try:
         headers = {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36",
+            "Accept": "*/*",
+            "Accept-Language": "en-US,en;q=0.9",
             "x-ig-app-id": "936619743392459",
         }
-        async with httpx.AsyncClient(timeout=8, headers=headers) as client:
+        async with httpx.AsyncClient(timeout=8, headers=headers, follow_redirects=True) as client:
             res = await client.get(f"https://www.instagram.com/api/v1/users/web_profile_info/?username={cleaned}")
             if res.status_code == 200:
                 user = res.json().get("data", {}).get("user", {})
