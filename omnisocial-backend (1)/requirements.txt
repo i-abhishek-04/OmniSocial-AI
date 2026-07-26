@@ -17,3 +17,4 @@ psycopg2-binary==2.9.10
 
 # Outbound HTTP (used by services/ai_service.py to call the OpenAI API)
 httpx==0.28.1
+gunicorn==23.0.0
