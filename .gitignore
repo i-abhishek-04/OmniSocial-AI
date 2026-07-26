@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Logs
 logs
 *.log
@@ -141,3 +142,16 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
+=======
+# Root .gitignore for OmniSocial AI
+.env
+*.env
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+venv/
+dist/
+*.db
+.DS_Store
+>>>>>>> cd542c1 (Initial commit: OmniSocial AI cross-platform creator dashboard with AI assistant)

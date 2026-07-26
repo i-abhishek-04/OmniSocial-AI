@@ -1,0 +1,148 @@
+.footer {
+  border-top: 1px solid var(--color-border);
+  padding: 64px 0 32px;
+  margin-top: auto;
+}
+
+.footer__top {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 48px;
+  padding-bottom: 48px;
+}
+
+.footer__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-white);
+}
+
+.footer__logo-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  background: linear-gradient(150deg, var(--color-primary), #0369a1);
+  color: #04121f;
+}
+
+.footer__logo-accent {
+  color: var(--color-primary);
+}
+
+.footer__tagline {
+  margin: 14px 0 22px;
+  font-size: 14px;
+  color: var(--color-secondary-text);
+  max-width: 260px;
+  line-height: 1.6;
+}
+
+.footer__socials {
+  display: flex;
+  gap: 10px;
+}
+
+.footer__social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  color: var(--color-secondary-text);
+  transition: color var(--transition-base), border-color var(--transition-base), background var(--transition-base);
+}
+
+.footer__social-link:hover {
+  color: var(--color-primary);
+  border-color: var(--color-border-hover);
+  background: var(--color-card-hover);
+}
+
+.footer__columns {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.footer__column-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-white);
+  margin-bottom: 18px;
+}
+
+.footer__column-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer__column-link {
+  font-size: 14px;
+  color: var(--color-secondary-text);
+  transition: color var(--transition-base);
+}
+
+.footer__column-link:hover {
+  color: var(--color-white);
+}
+
+.footer__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 28px;
+  border-top: 1px solid var(--color-border);
+}
+
+.footer__copyright {
+  font-size: 13px;
+  color: var(--color-secondary-text);
+}
+
+.footer__legal {
+  display: flex;
+  gap: 24px;
+}
+
+.footer__legal-link {
+  font-size: 13px;
+  color: var(--color-secondary-text);
+  transition: color var(--transition-base);
+}
+
+.footer__legal-link:hover {
+  color: var(--color-white);
+}
+
+@media (max-width: 760px) {
+  .footer__top {
+    grid-template-columns: 1fr;
+  }
+
+  .footer__columns {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer__bottom {
+    flex-direction: column;
+    gap: 14px;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 420px) {
+  .footer__columns {
+    grid-template-columns: 1fr;
+  }
+}

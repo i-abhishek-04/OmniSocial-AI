@@ -1,0 +1,330 @@
+.dashboard-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.dash-state {
+  color: var(--color-secondary-text);
+  padding: 40px 0;
+}
+
+.dash-state--error {
+  color: #f87171;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.panel {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+}
+
+.panel__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.panel__title {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.panel__subtitle {
+  color: var(--color-secondary-text);
+  font-size: 13px;
+  margin-top: 3px;
+}
+
+.panel__pill {
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 12.5px;
+  color: var(--color-primary);
+  white-space: nowrap;
+}
+
+.panel__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--color-primary);
+  font-size: 13.5px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.platform-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 14px;
+}
+
+.platform-tile {
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: border-color var(--transition-base), transform var(--transition-base);
+}
+
+.platform-tile:hover {
+  border-color: var(--color-border-hover);
+  transform: translateY(-2px);
+}
+
+.platform-tile__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.platform-tile__icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--color-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.platform-tile__badge {
+  font-size: 10.5px;
+  color: var(--color-secondary-text);
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  padding: 3px 8px;
+  border-radius: 999px;
+}
+
+.platform-tile__name {
+  font-weight: 600;
+  font-size: 14.5px;
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.platform-tile__live-tag {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #22c55e;
+  background: rgba(34, 197, 94, 0.12);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  padding: 2px 6px;
+  border-radius: 999px;
+}
+
+.platform-tile__value {
+  color: var(--color-secondary-text);
+  font-size: 13px;
+}
+
+.platform-tile__growth {
+  font-size: 12px;
+  font-family: var(--font-mono);
+  font-weight: 600;
+}
+
+.platform-tile__growth.up { color: #4ade80; }
+.platform-tile__growth.down { color: #f87171; }
+
+.platform-tile__connect {
+  color: var(--color-primary);
+  font-size: 13px;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+/* Coming Soon cards - same tile shape as a connectable platform, but
+   visually disabled: dimmed content, a soft glass sheen, and a lock icon
+   on the button rather than the tile just disappearing (per spec these
+   platforms stay visible, never hidden). */
+.platform-tile--disabled {
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.platform-tile--disabled:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-border-hover);
+}
+
+.platform-tile--disabled .platform-tile__icon {
+  opacity: 0.55;
+}
+
+.platform-tile__badge--soon {
+  color: #f59e0b;
+  background: rgba(245, 158, 11, 0.1);
+  border-color: rgba(245, 158, 11, 0.3);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.platform-tile__coming-soon-text {
+  color: var(--color-secondary-text);
+  font-size: 12.5px;
+  line-height: 1.5;
+  margin-top: 2px;
+  flex: 1;
+}
+
+.platform-tile__connect-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 10px;
+  padding: 9px 16px;
+  border-radius: 999px;
+  font-size: 12.5px;
+  font-weight: 600;
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  color: var(--color-secondary-text);
+  cursor: not-allowed;
+}
+
+.detail-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 4px;
+}
+
+.detail-header__icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.detail-header__title {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.detail-header__handle {
+  color: var(--color-secondary-text);
+  font-size: 13.5px;
+}
+
+.detail-actions {
+  margin-left: auto;
+}
+
+.connect-form {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.connect-form input {
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  color: var(--color-white);
+  font-size: 14px;
+  min-width: 200px;
+}
+
+.revenue-summary {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.revenue-summary__block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.revenue-summary__value {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.revenue-summary__label {
+  color: var(--color-secondary-text);
+  font-size: 13px;
+}
+
+.revenue-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+}
+
+.revenue-table th,
+.revenue-table td {
+  text-align: left;
+  padding: 12px 10px;
+  font-size: 13.5px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.revenue-table th {
+  color: var(--color-secondary-text);
+  font-weight: 500;
+  font-size: 12.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.revenue-table__platform {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.revenue-table__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--color-secondary-text);
+}
+
+.settings-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 440px;
+}

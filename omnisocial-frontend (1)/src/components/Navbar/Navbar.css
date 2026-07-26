@@ -1,0 +1,130 @@
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  background: rgba(8, 17, 29, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid transparent;
+  transition: background var(--transition-base), border-color var(--transition-base);
+}
+
+.navbar--scrolled {
+  background: rgba(8, 17, 29, 0.86);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.navbar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+}
+
+.navbar__logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--color-white);
+}
+
+.navbar__logo-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  background: var(--gradient-primary);
+  color: var(--color-white);
+}
+
+.navbar__logo-accent {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.navbar__links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.navbar__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14.5px;
+  font-weight: 500;
+  color: var(--color-secondary-text);
+  transition: color var(--transition-base);
+}
+
+.navbar__link:hover {
+  color: var(--color-white);
+}
+
+.navbar__actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navbar__login {
+  padding: 11px 20px;
+}
+
+.navbar__toggle {
+  display: none;
+  color: var(--color-white);
+  padding: 6px;
+}
+
+.navbar__mobile {
+  display: none;
+}
+
+@media (max-width: 980px) {
+  .navbar__links,
+  .navbar__actions {
+    display: none;
+  }
+
+  .navbar__toggle {
+    display: inline-flex;
+  }
+
+  .navbar__mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 12px 24px 24px;
+    border-top: 1px solid var(--color-border);
+    background: rgba(8, 17, 29, 0.98);
+  }
+
+  .navbar__mobile-link {
+    padding: 12px 4px;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--color-secondary-text);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .navbar__mobile-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 16px;
+  }
+
+  .navbar__mobile-actions .btn {
+    flex: 1;
+  }
+}
