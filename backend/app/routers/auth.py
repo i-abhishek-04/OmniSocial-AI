@@ -1,10 +1,11 @@
 """
 Authentication routes.
 """
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Request
 from sqlalchemy.orm import Session
 
 from app.core.database import get_db
+from app.core.rate_limit import limiter
 from app.middleware.auth import get_current_user
 from app.models.user import User
 from app.schemas.user import UserCreateRequest, LoginRequest, TokenResponse, UserResponse
@@ -15,7 +16,8 @@ router = APIRouter(prefix="/auth", tags=["auth"])
 
 
 @router.post("/register")
-def register(payload: UserCreateRequest, db: Session = Depends(get_db)):
+@limiter.limit("5/minute")
+def register(request: Request, payload: UserCreateRequest, db: Session = Depends(get_db)):
     user, token = auth_service.register(
         db,
         email=payload.email,
@@ -28,7 +30,8 @@ def register(payload: UserCreateRequest, db: Session = Depends(get_db)):
 
 
 @router.post("/login")
-def login(payload: LoginRequest, db: Session = Depends(get_db)):
+@limiter.limit("5/minute")
+def login(request: Request, payload: LoginRequest, db: Session = Depends(get_db)):
     user, token = auth_service.login(db, email=payload.email, password=payload.password)
     data = TokenResponse(access_token=token, user=UserResponse.model_validate(user))
     return success_response(data.model_dump(mode="json"), "Logged in")

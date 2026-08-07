@@ -5,6 +5,7 @@ Every other module reads config from here via `get_settings()` - never
 from `os.environ` directly.
 """
 from pydantic_settings import BaseSettings, SettingsConfigDict
+from pydantic import model_validator
 
 
 class Settings(BaseSettings):
@@ -40,6 +41,16 @@ class Settings(BaseSettings):
     @property
     def cors_origins_list(self) -> list[str]:
         return [origin.strip() for origin in self.CORS_ORIGINS.split(",") if origin.strip()]
+
+    @model_validator(mode="after")
+    def _enforce_jwt_secret_in_production(self) -> "Settings":
+        """Refuse to boot in production with the default dev JWT secret."""
+        if self.ENV.lower() in ("production", "prod") and self.JWT_SECRET == "dev-only-insecure-secret-change-me":
+            raise ValueError(
+                "JWT_SECRET must be set via environment variable when ENV=production. "
+                "Refusing to start with the default insecure development secret."
+            )
+        return self
 
 
 def get_settings() -> Settings:

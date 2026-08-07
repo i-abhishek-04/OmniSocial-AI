@@ -8,11 +8,11 @@ refreshes instead of jumping around randomly) as a fallback for platforms
 that either aren't connected yet or aren't live-capable at all.
 
 Real platform data flows through services/platforms/registry.py: every
-live adapter (YouTube, GitHub, Reddit, Dev.to) can be asked for real
-public stats via connect_platform() below; coming-soon platforms
-(Instagram, LinkedIn, TikTok, Facebook, X) are never fetched and never
-marked connected - see PLATFORM_REGISTRY for the single source of truth
-on which platforms are which.
+live adapter (YouTube, GitHub, Instagram, Reddit, Dev.to) can be asked
+for real public stats via connect_platform() below; coming-soon platforms
+(LinkedIn, TikTok, Facebook, X) are never fetched and never marked
+connected - see PLATFORM_REGISTRY for the single source of truth on
+which platforms are which.
 """
 import hashlib
 import random
@@ -270,9 +270,9 @@ async def connect_platform(db: Session, user_id: str, user_email: str, platform:
     if adapter is None:
         return None
     if not adapter.is_live:
-        # Coming-soon platforms (Instagram, LinkedIn, TikTok, Facebook, X)
-        # have no working connect flow yet - the frontend should be
-        # showing a disabled button for these, but guard here too.
+        # Coming-soon platforms (LinkedIn, TikTok, Facebook, X) have no
+        # working connect flow yet - the frontend should be showing a
+        # disabled button for these, but guard here too.
         return None
 
     social_repository.ensure_seeded(db, user_id, user_email=user_email)
@@ -281,8 +281,9 @@ async def connect_platform(db: Session, user_id: str, user_email: str, platform:
         return None
 
     # Every live adapter exposes the same fetch_public_stats(handle)
-    # contract, so this works identically for YouTube, GitHub, Reddit, and
-    # Dev.to - adding a fifth live platform later needs no change here.
+    # contract, so this works identically for YouTube, GitHub, Instagram,
+    # Reddit, and Dev.to - adding another live platform later needs no
+    # change here.
     live_stats = await adapter.fetch_public_stats(handle)
 
     if live_stats:

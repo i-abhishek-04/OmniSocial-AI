@@ -4,10 +4,12 @@ middleware wiring, and startup handlers.
 """
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
+from slowapi.errors import RateLimitExceeded
 
 from app.core.config import get_settings
 from app.core.database import init_db
 from app.core.logging import configure_logging
+from app.core.rate_limit import limiter
 from app.middleware.cors import configure_cors
 from app.routers import auth, users, analytics, chat, inbox, scheduler
 from app.utils.exceptions import AppError
@@ -19,12 +21,22 @@ configure_logging()
 
 app = FastAPI(title=settings.APP_NAME)
 
+app.state.limiter = limiter
+
 configure_cors(app)
 
 
 @app.exception_handler(AppError)
 def handle_app_error(request: Request, exc: AppError):
     return JSONResponse(status_code=exc.status_code, content=error_response(exc.message))
+
+
+@app.exception_handler(RateLimitExceeded)
+def handle_rate_limit_exceeded(request: Request, exc: RateLimitExceeded):
+    return JSONResponse(
+        status_code=429,
+        content=error_response("Too many requests. Please try again shortly."),
+    )
 
 
 @app.on_event("startup")

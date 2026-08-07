@@ -9,3 +9,8 @@ venv/
 dist/
 *.db
 .DS_Store
+*.zip
+.pytest_cache/
+*.log
+.temp_zip_extract/
+
